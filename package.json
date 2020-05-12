@@ -1,0 +1,63 @@
+{
+  "name": "redux-promised-dispatch",
+  "version": "0.0.1",
+  "description": "redux middleware for promised dispatch",
+  "main": "src/index.ts",
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "prepare": "npm run build",
+    "lint": "eslint --ext .ts src",
+    "format": "prettier --write './src/**/*.ts'",
+    "minify": "uglifyjs --compress --mangle --output lib/index.js -- lib/index.js",
+    "build:lib": "tsc && npm run minify",
+    "build": "npm run clean && npm run build:lib"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "redux",
+    "redux-middleware",
+    "redux-promised-dispatch",
+    "redux-saga"
+  ],
+  "files": [
+    "lib/**/*"
+  ],
+  "author": "Kadchenko",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@typescript-eslint/eslint-plugin": "^2.32.0",
+    "@typescript-eslint/parser": "^2.32.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^4.2.5",
+    "json-schema": "^0.2.5",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3",
+    "uglify-js": "^3.9.2"
+  },
+  "dependencies": {
+    "redux": "^4.0.5"
+  }
+}
